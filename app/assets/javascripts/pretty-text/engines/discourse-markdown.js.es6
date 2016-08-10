@@ -40,6 +40,7 @@ class DialectHelper {
 
   registerInlineFeature(featureName, start, fn) {
     this._dialect.inline[start] = function() {
+      console.log(`reginl: ${start} ${featureName}`);
       if (!currentOpts.features[featureName]) { return; }
       return fn.apply(this, arguments);
     };

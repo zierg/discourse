@@ -68,7 +68,7 @@ module PrettyText
         apply_es6_file(ctx, root_path, Regexp.last_match[2])
       elsif l =~ /\/\/= require_tree (\.\/)?(.*)$/
         path = Regexp.last_match[2]
-        Dir["#{root_path}/#{path}/**"].each do |f|
+        Dir["#{root_path}/#{path}/**"].sort.each do |f|
           apply_es6_file(ctx, root_path, f.sub(root_path, '')[1..-1].sub(/\.js.es6$/, ''))
         end
       end
@@ -201,8 +201,6 @@ module PrettyText
     options[:topicId] = opts[:topic_id]
 
     working_text = text.dup
-
-    puts "options: #{options.inspect}"
 
     sanitized = markdown(working_text, options)
     puts "sanitized: #{sanitized}"

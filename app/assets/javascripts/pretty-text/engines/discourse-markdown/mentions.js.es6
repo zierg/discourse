@@ -5,6 +5,8 @@
 **/
 export function setup(helper) {
 
+  console.log('initialize mention lookup!');
+
   // We have to prune @mentions that are within links.
   helper.onParseNode(event => {
     const node = event.node,
@@ -36,6 +38,11 @@ export function setup(helper) {
       const opts = helper.getOptions();
       const mentionLookup = opts.mentionLookup;
 
+      console.log(`mh0: ${name}`);
+      console.log(`mh1: ${mentionLookup}`);
+      if (mentionLookup) {
+        console.log(`mh2: ${mentionLookup(name)}`);
+      }
       const type = mentionLookup && mentionLookup(name);
       if (type === "user") {
         return ['a', {'class': 'mention', href: opts.getURL("/users/") + name.toLowerCase()}, mention];
