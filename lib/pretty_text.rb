@@ -202,6 +202,8 @@ module PrettyText
 
     working_text = text.dup
 
+    puts "options: #{options.inspect}"
+
     sanitized = markdown(working_text, options)
     puts "sanitized: #{sanitized}"
 
