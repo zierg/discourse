@@ -30,6 +30,7 @@ module PrettyText
     end
 
     def mention_lookup(name)
+      puts "mention lookup: #{name}"
       return false   if name.blank?
       return "group" if Group.where(name: name).exists?
       return "user"  if User.where(username_lower: name.downcase).exists?
